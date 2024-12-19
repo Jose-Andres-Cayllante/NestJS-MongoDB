@@ -15,6 +15,6 @@ async function bootstrap() {
     forbidNonWhitelisted: true // lanza un error si hay propiedades no permitidas
   }))
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3000, '192.168.0.15');
 }
 bootstrap();

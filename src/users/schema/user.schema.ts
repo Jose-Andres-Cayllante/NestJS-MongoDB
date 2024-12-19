@@ -28,8 +28,8 @@ export class User{
 export const UserSchema = SchemaFactory.createForClass(User)
 // Middleware para hash de la contraseña antes de guardar
 UserSchema.pre<UserSchema>("save", async function (next) {
-    if (this.isModified("password")) {
-      this.password = await hash(this.password, Number(process.env.HASH_SALT));
-    }
-    next();
-  });
+  if (this.isModified("password")) {
+    this.password = await hash(this.password, Number(process.env.HASH_SALT));
+  }
+  next();
+});

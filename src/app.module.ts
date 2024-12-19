@@ -5,13 +5,17 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { RolesModule } from './roles/roles.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true, // Hace que las variables de entorno estén disponibles globalmente
+    }),
     MongooseModule.forRoot(process.env.MONGO_URI),
     UsersModule,
-    AuthModule
+    AuthModule,
+    RolesModule
 
   ],
   controllers: [AppController],
